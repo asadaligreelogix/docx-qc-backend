@@ -1,0 +1,37 @@
+DOCX QC Backend Deployment Guide
+===============================
+
+1. Requirements
+---------------
+- Python 3.9+
+- pip
+- (Optional) virtualenv
+
+2. Local Development
+---------------------
+- Install dependencies:
+  pip install -r requirements.txt
+- Start the backend server:
+  ./run_local.sh
+  (or)
+  python run.py
+- The API will be available at http://localhost:8000 (or as configured).
+
+3. Environment Variables
+------------------------
+- By default, no extra env vars are required for local dev.
+- For production, set any secrets or config in your hosting platform (see app/config.py for options).
+
+4. Deploying to Render
+----------------------
+- Push your code to GitHub.
+- Create a new Web Service in Render, connect your repo.
+- Set the start command to: python run.py
+- (Optional) Set environment variables as needed.
+- Deploy!
+
+5. Notes
+--------
+- CORS is enabled by default for all origins (see app/main.py). Restrict in production if needed.
+- The main file upload endpoint is /check (POST, multipart/form-data, field name: file).
+- Health check endpoint: /api/health 
